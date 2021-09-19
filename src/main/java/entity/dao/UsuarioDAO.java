@@ -1,16 +1,75 @@
-package Usuario;
+package entity.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.sql.Date;
 import java.util.List;
 
-import DAO.ConexaoBanco;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import dao.ConexaoBanco;
+import entity.Usuario;
+import utils.HibernateUtil;
 
+/** Classe com métodos de crud do Usuário. */
 public abstract class UsuarioDAO {
+	
+	/** Sessão do Hibernate para acesso ao banco. */
+	static final SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+	
+	/**
+	 * Salva um usuario no banco.
+	 * @param usuario Usuário para salvar.
+	 * @return salvo com sucesso (true) ou falha (false).
+	 */
+	public static boolean criarUsuarioV2(Usuario usuario) {
+		Transaction transaction = null;
+		try (var session = sessionFactory.openSession()) {
+			transaction = session.beginTransaction();
+			
+			session.save(usuario);
+			
+			transaction.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			if (transaction != null)
+				transaction.rollback();
+			return false;
+		}
+		return true;
+	}
+	
+	/**
+	 * Lista os usuários salvos no banco.
+	 * @return Lista de usuários.
+	 */
+	public static List<Usuario> listarUsuariosV2() {
+		List<Usuario> usuarios = null;
+		Transaction transaction = null;
+		try (var session = sessionFactory.openSession()) {
+			transaction = session.beginTransaction();
+			
+			var criteriaBuilder = session.getCriteriaBuilder();
+			var query = criteriaBuilder.createQuery(Usuario.class);
+			query.select(query.from(Usuario.class));
+		
+			usuarios = session.createQuery(query).list();
+			
+			transaction.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			if (transaction != null)
+				transaction.rollback();
+		}
+		return usuarios;
+	}
+	
+	// TODO: remover os métodos abaixo assim que for implementado Hibernate a todos.
+
+	@Deprecated
 	public static List<Usuario> listarUsuarios() {
 		List<Usuario> usuarios = new ArrayList<>();
 		
@@ -23,7 +82,7 @@ public abstract class UsuarioDAO {
 			ResultSet result = statement.executeQuery();
 			
 			while (result.next()) {
-				int usuarioId = result.getInt("Cod_Usuario");
+				Long usuarioId = result.getLong("Cod_Usuario");
 				String usuarioNome = result.getString("Nome_Razao");
 				String usuarioEmail = result.getString("Email");
 				String usuarioCep = result.getString("Cep");
@@ -32,7 +91,7 @@ public abstract class UsuarioDAO {
 				String usuarioCidade = result.getString("Cidade");
 				String usuarioCpf = result.getString("Cpf");
 				String usuarioCnpj = result.getString("Cnpj");
-				Date usuarioDataNasc = result.getDate("Data_Nasc");
+				LocalDate usuarioDataNasc = result.getDate("Data_Nasc").toLocalDate();
 				
 				Usuario usuario = new Usuario(
 					usuarioNome,
@@ -58,7 +117,7 @@ public abstract class UsuarioDAO {
 		return usuarios;
 	}
 
-	public static Usuario procurarUsuario(int id) {
+	public static Usuario procurarUsuario(Long id) {
 		Usuario usuario = null;
 		
 		try {
@@ -67,12 +126,12 @@ public abstract class UsuarioDAO {
 			String sql = "SELECT * FROM `USUARIO` WHERE Cod_Usuario = ?";
 			
 			PreparedStatement statement = bancoConexao.prepareStatement(sql);
-			statement.setInt(1, id);
+			statement.setLong(1, id);
 			
 			ResultSet result = statement.executeQuery();
 			
 			while (result.next()) {
-				int usuarioId = result.getInt("Cod_Usuario");
+				Long usuarioId = result.getLong("Cod_Usuario");
 				String usuarioNome = result.getString("Nome_Razao");
 				String usuarioEmail = result.getString("Email");
 				String usuarioCep = result.getString("Cep");
@@ -81,7 +140,7 @@ public abstract class UsuarioDAO {
 				String usuarioCidade = result.getString("Cidade");
 				String usuarioCpf = result.getString("Cpf");
 				String usuarioCnpj = result.getString("Cnpj");
-				Date usuarioDataNasc = result.getDate("Data_Nasc");
+				LocalDate usuarioDataNasc = result.getDate("Data_Nasc").toLocalDate();
 				
 				usuario = new Usuario(
 						usuarioNome,
@@ -105,6 +164,7 @@ public abstract class UsuarioDAO {
 		return usuario;
 	}
 
+	@Deprecated
 	public static boolean criarUsuario(Usuario usuario, String senha) {
 		boolean criadoSucesso = false;
 		
@@ -123,7 +183,7 @@ public abstract class UsuarioDAO {
 			statement.setString(7, usuario.getCidade());
 			statement.setString(8, usuario.getCpf());
 			statement.setString(9, usuario.getCnpj());
-			statement.setDate(10, usuario.getDataNasc());
+//			statement.setDate(10, usuario.getDataNasc());
 			
 			int result = statement.executeUpdate();
 			
@@ -139,7 +199,7 @@ public abstract class UsuarioDAO {
 		return criadoSucesso;
 	}
 
-	public static boolean deletarUsuario(int id) {
+	public static boolean deletarUsuario(Long id) {
 		boolean usuarioDeletadoSucesso = false;
 		
 		try {
@@ -148,7 +208,7 @@ public abstract class UsuarioDAO {
 			String sql = "DELETE FROM `USUARIO` WHERE Cod_Usuario = ?";
 			
 			PreparedStatement statement = conn.prepareStatement(sql);
-			statement.setInt(1, id);
+			statement.setLong(1, id);
 			
 			int rowsDeleted = statement.executeUpdate();
 			if (rowsDeleted > 0)
@@ -177,9 +237,9 @@ public abstract class UsuarioDAO {
 			statement.setString(4, usuario.getCep());
 			statement.setInt(5, usuario.getNumero());
 			statement.setString(6, usuario.getCidade());
-			statement.setDate(7, usuario.getDataNasc());
+//			statement.setDate(7, usuario.getDataNasc());
 
-			statement.setInt(8, usuario.getId());
+			statement.setLong(8, usuario.getId());
 			 
 			int rowsUpdated = statement.executeUpdate();
 			if (rowsUpdated > 0) {
@@ -207,7 +267,7 @@ public abstract class UsuarioDAO {
 			
 			ResultSet result = statement.executeQuery();
 			while (result.next()) {
-				int usuarioId = result.getInt("Cod_Usuario");
+				Long usuarioId = result.getLong("Cod_Usuario");
 				String usuarioNome = result.getString("Nome_Razao");
 				String usuarioEmail = result.getString("Email");
 				String usuarioCep = result.getString("Cep");
@@ -216,7 +276,7 @@ public abstract class UsuarioDAO {
 				String usuarioCidade = result.getString("Cidade");
 				String usuarioCpf = result.getString("Cpf");
 				String usuarioCnpj = result.getString("Cnpj");
-				Date usuarioDataNasc = result.getDate("Data_Nasc");
+				LocalDate usuarioDataNasc = result.getDate("Data_Nasc").toLocalDate();
 				
 				String usuarioSenha = result.getString("Senha");
 				
@@ -260,7 +320,7 @@ public abstract class UsuarioDAO {
 			ResultSet result = statement.executeQuery();
 			
 			while (result.next()) {
-				int usuarioId = result.getInt("Cod_Usuario");
+				Long usuarioId = result.getLong("Cod_Usuario");
 				String usuarioNome = result.getString("Nome_Razao");
 				String usuarioEmail = result.getString("Email");
 				String usuarioCep = result.getString("Cep");
@@ -269,7 +329,7 @@ public abstract class UsuarioDAO {
 				String usuarioCidade = result.getString("Cidade");
 				String usuarioCpf = result.getString("Cpf");
 				String usuarioCnpj = result.getString("Cnpj");
-				Date usuarioDataNasc = result.getDate("Data_Nasc");
+				LocalDate usuarioDataNasc = result.getDate("Data_Nasc").toLocalDate();
 				
 				usuario = new Usuario(
 						usuarioNome,
@@ -307,7 +367,7 @@ public abstract class UsuarioDAO {
 			ResultSet result = statement.executeQuery();
 			
 			while (result.next()) {
-				int usuarioId = result.getInt("Cod_Usuario");
+				Long usuarioId = result.getLong("Cod_Usuario");
 				String usuarioNome = result.getString("Nome_Razao");
 				String usuarioEmail = result.getString("Email");
 				String usuarioCep = result.getString("Cep");
@@ -316,7 +376,7 @@ public abstract class UsuarioDAO {
 				String usuarioCidade = result.getString("Cidade");
 				String usuarioCpf = result.getString("Cpf");
 				String usuarioCnpj = result.getString("Cnpj");
-				Date usuarioDataNasc = result.getDate("Data_Nasc");
+				LocalDate usuarioDataNasc = result.getDate("Data_Nasc").toLocalDate();
 				
 				usuario = new Usuario(
 						usuarioNome,
@@ -354,7 +414,7 @@ public abstract class UsuarioDAO {
 			ResultSet result = statement.executeQuery();
 			
 			while (result.next()) {
-				int usuarioId = result.getInt("Cod_Usuario");
+				Long usuarioId = result.getLong("Cod_Usuario");
 				String usuarioNome = result.getString("Nome_Razao");
 				String usuarioEmail = result.getString("Email");
 				String usuarioCep = result.getString("Cep");
@@ -363,7 +423,7 @@ public abstract class UsuarioDAO {
 				String usuarioCidade = result.getString("Cidade");
 				String usuarioCpf = result.getString("Cpf");
 				String usuarioCnpj = result.getString("Cnpj");
-				Date usuarioDataNasc = result.getDate("Data_Nasc");
+				LocalDate usuarioDataNasc = result.getDate("Data_Nasc").toLocalDate();
 				
 				usuario = new Usuario(
 						usuarioNome,
