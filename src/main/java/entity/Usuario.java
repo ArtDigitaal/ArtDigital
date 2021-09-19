@@ -9,39 +9,52 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "USUARIO")
+@Table(name = "usuario")
 public class Usuario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "Cod_Usuario")
+	@Column(name = "cod_usuario")
 	private Long id;
-	@Column(name = "Nome_Razao")
+	
+	@Column(name = "nome_Razao")
 	private String nome;
-	@Column(name = "Email")
+	
+	@Column(name = "email", unique = true)
 	private String email;
-	@Column(name = "Cep")
+	
+	@Column(name = "senha")
+	private String senha;
+	
+	@Column(name = "cep")
 	private String cep;
-	@Column(name = "Rua")
+	
+	@Column(name = "rua")
 	private String rua;
-	@Column(name = "Numero")
+	
+	@Column(name = "numero")
 	private int numero;
-	@Column(name = "Cidade")
+	
+	@Column(name = "cidade")
 	private String cidade;
-	@Column(name = "Cpf")
+	
+	@Column(name = "cpf", unique = true)
 	private String cpf;
-	@Column(name = "Cnpj")
+	
+	@Column(name = "cnpj", unique = true)
 	private String cnpj;
-	@Column(name = "Data_Nasc")
+	
+	@Column(name = "data_nasc")
 	private LocalDate dataNasc;
 	
 	public Usuario() {
 	}
 	
-	public Usuario(String nome, String email, String cep, String rua, int numero, String cidade, String cpf,
+	public Usuario(String nome, String email, String senha, String cep, String rua, int numero, String cidade, String cpf,
 			String cnpj, LocalDate dataNasc) {
 		super();
 		this.nome = nome;
 		this.email = email;
+		this.senha = senha;
 		this.cep = cep;
 		this.rua = rua;
 		this.numero = numero;
@@ -73,6 +86,14 @@ public class Usuario {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 
 	public String getCep() {
