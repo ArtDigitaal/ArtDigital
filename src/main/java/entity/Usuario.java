@@ -1,21 +1,44 @@
-package Usuario;
+package entity;
 
-import java.sql.Date;
+import java.time.LocalDate;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "USUARIO")
 public class Usuario {
-	private int id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "Cod_Usuario")
+	private Long id;
+	@Column(name = "Nome_Razao")
 	private String nome;
+	@Column(name = "Email")
 	private String email;
+	@Column(name = "Cep")
 	private String cep;
+	@Column(name = "Rua")
 	private String rua;
+	@Column(name = "Numero")
 	private int numero;
+	@Column(name = "Cidade")
 	private String cidade;
+	@Column(name = "Cpf")
 	private String cpf;
+	@Column(name = "Cnpj")
 	private String cnpj;
-	private Date dataNasc;
+	@Column(name = "Data_Nasc")
+	private LocalDate dataNasc;
+	
+	public Usuario() {
+	}
 	
 	public Usuario(String nome, String email, String cep, String rua, int numero, String cidade, String cpf,
-			String cnpj, Date dataNasc) {
+			String cnpj, LocalDate dataNasc) {
 		super();
 		this.nome = nome;
 		this.email = email;
@@ -28,11 +51,11 @@ public class Usuario {
 		this.dataNasc = dataNasc;
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -100,11 +123,11 @@ public class Usuario {
 		this.cnpj = cnpj;
 	}
 
-	public Date getDataNasc() {
+	public LocalDate getDataNasc() {
 		return dataNasc;
 	}
 
-	public void setDataNasc(Date dataNasc) {
+	public void setDataNasc(LocalDate dataNasc) {
 		this.dataNasc = dataNasc;
 	}
 
