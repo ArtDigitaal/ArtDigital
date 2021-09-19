@@ -18,11 +18,11 @@ public class HibernateUtil {
                 var configuration = new Configuration();
                 
                 var settings = new Properties();
-                settings.put(Environment.DRIVER, "com.mysql.cj.jdbc.Driver");
-                settings.put(Environment.URL, "jdbc:mysql://localhost:44149/ARTDIGITAL");
-                settings.put(Environment.USER, "root");
+                settings.put(Environment.DRIVER, "org.postgresql.Driver");
+                settings.put(Environment.URL, "jdbc:postgresql://localhost:42109/ARTDIGITAL");
+                settings.put(Environment.USER, "postgres");
                 settings.put(Environment.PASS, "my-secret-pw");
-                settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQL5Dialect");
+                settings.put(Environment.DIALECT, "org.hibernate.dialect.PostgreSQLDialect");
                 settings.put(Environment.SHOW_SQL, "true");
                 settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
 //                settings.put(Environment.HBM2DDL_AUTO, "create-drop");
