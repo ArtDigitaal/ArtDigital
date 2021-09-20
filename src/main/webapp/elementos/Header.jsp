@@ -1,4 +1,4 @@
-<%@page import="Usuario.Usuario"%>
+<%@page import="entity.Usuario"%>
 <body>
 	<header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between p-3 mb-4 border-bottom">
 	      <a href="./index.jsp" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
@@ -23,9 +23,9 @@
 	      </ul>
 	      <div class="col-md-3 text-end">
 		  	<%
-			if (session.getAttribute("usuarioValidado") != null) {
-				Usuario headerLogin = (Usuario) session.getAttribute("usuarioValidado");
-		  		%>
+		  	if (session.getAttribute("usuarioValidado") != null) {
+		  			  			Usuario headerLogin = (Usuario) session.getAttribute("usuarioValidado");
+		  	%>
 		  		<a class="btn btn-secundary" href="./MinhaConta.jsp" role="button" id="headerButtonLogin"><%=headerLogin.getNome() %></a>
 	        	<a class="btn btn-outline-primary" href="./processamentos/RealizarLogout.jsp" role="button" id="headerButtonLogin">Sair</a>
 		        <%

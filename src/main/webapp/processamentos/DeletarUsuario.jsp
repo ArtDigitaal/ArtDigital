@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<%@page import="Usuario.UsuarioDAO"%>
-<%@page import="Usuario.Usuario"%>
+<%@page import="entity.dao.UsuarioDAO"%>
+<%@page import="entity.Usuario"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -11,17 +11,15 @@
 </head>
 <body>
 <script>
-	<%
-	Object usuarioValidado = session.getAttribute("usuarioValidado");
+	<%Object usuarioValidado = session.getAttribute("usuarioValidado");
 
 	if (usuarioValidado != null) {
-		Usuario usuario = (Usuario) usuarioValidado;
+		entity.Usuario usuario = (entity.Usuario) usuarioValidado;
 		
 		if (UsuarioDAO.deletarUsuario(usuario.getId())) {
 			out.print(String.format("alert('Usuario %s deletado com sucesso!')", usuario.getNome()));
 		} else {
-			out.print(String.format("alert('Erro ao deletar usuario %s!')", usuario.getNome()));
-			%>history.back();<%
+			out.print(String.format("alert('Erro ao deletar usuario %s!')", usuario.getNome()));%>history.back();<%
 		}
 		
 		session.setAttribute("usuarioValidado", null);
