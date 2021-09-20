@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<%@page import="Usuario.Usuario"%>
-<%@page import="Usuario.UsuarioDAO"%>
+<%@page import="entity.Usuario"%>
+<%@page import="entity.dao.UsuarioDAO"%>
 <%@page import="java.sql.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -24,7 +24,7 @@ function botaoDeletarUsuario() {
 	<%
 	Object usuarioValidado = session.getAttribute("usuarioValidado");
 
-	if (usuarioValidado != null) {
+			if (usuarioValidado != null) {
 		Usuario usuario = (Usuario) usuarioValidado;
 		
 		String usuarioCpfCnpj = "";
@@ -33,8 +33,7 @@ function botaoDeletarUsuario() {
 		} else if (usuario.getCnpj() == null) {
 			usuarioCpfCnpj = usuario.getCpf();
 		}
-		
-		%>
+	%>
 		<div class="text-center pb-5">
 			<h1><%=usuario.getNome() %></h1>
 			<h6><%=usuario.getEmail() %></h6>
