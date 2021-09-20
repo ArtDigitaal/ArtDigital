@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<%@page import="Usuario.UsuarioDAO"%>
+<%@page import="java.time.LocalDateTime"%>
+<%@page import="entity.dao.UsuarioDAO"%>
 <%@page import="java.time.LocalDate"%>
 <%@page import="java.sql.Date"%>
-<%@page import="Usuario.Usuario"%>
+<%@page import="entity.Usuario"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -13,8 +14,7 @@
 </head>
 <body>
 <script>
-	<%
-	String nome = (String) request.getParameter("inputName");
+	<%String nome = (String) request.getParameter("inputName");
 	String rua = (String) request.getParameter("addressInput");
 	String cep = (String) request.getParameter("inputZip");
 	int numero = 0;
@@ -31,11 +31,11 @@
 	String inputDate = (String) request.getParameter("inputDate");
 	String[] arrayDate = inputDate.split("-");
 	
-	Date dataNasc = Date.valueOf(LocalDate.of(
+	LocalDate dataNasc = LocalDate.of(
 		Integer.parseInt(arrayDate[0]),
 		Integer.parseInt(arrayDate[1]),
 		Integer.parseInt(arrayDate[2])
-	));
+	);
 	
 	Object usuarioValidado = session.getAttribute("usuarioValidado");
 
@@ -54,8 +54,7 @@
 		} else {
 			out.print("alert('Falha ao atualizar usuario.')");
 		}
-	}
-	%>
+	}%>
 	window.location = '../MinhaConta.jsp';
 </script>
 </body>

@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<%@page import="Usuario.UsuarioDAO"%>
+<%@page import="entity.dao.UsuarioDAO"%>
 <%@page import="java.time.LocalDate"%>
-<%@page import="java.sql.Date"%>
-<%@page import="Usuario.Usuario"%>
+<%@page import="entity.Usuario"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -34,11 +33,11 @@
 	String inputDate = (String) request.getParameter("inputDate");
 	String[] arrayDate = inputDate.split("-");
 	
-	Date dataNasc = Date.valueOf(LocalDate.of(
+	LocalDate dataNasc = LocalDate.of(
 		Integer.parseInt(arrayDate[0]),
 		Integer.parseInt(arrayDate[1]),
 		Integer.parseInt(arrayDate[2])
-	));
+	);
 	
 	/* Processando cpf e cnpj */
 	String inputAccountType = (String) request.getParameter("inputAccountType");
@@ -67,6 +66,7 @@
 	Usuario usuario = new Usuario(
 		nome,
 		email,
+		senha,
 		cep,
 		rua,
 		numero,
@@ -77,12 +77,12 @@
 	);
 	
 	if (!usuarioExiste) {
-		if (UsuarioDAO.criarUsuario(usuario, senha)) {
+		if (UsuarioDAO.criarUsuario(usuario)) {
 			out.print(String.format("<script>alert('Usuario %s cadastrado com sucesso!');</script>", usuario.getNome()));
 		} else {
 			out.print("<script>alert('Falha ao criar usuario.');</script>");
 		}
-		%><script>window.location = '../Login.jsp';</script><%
+	%><script>window.location = '../Login.jsp';</script><%
 	} else {
 		%><script>history.back();</script><%
 	}
