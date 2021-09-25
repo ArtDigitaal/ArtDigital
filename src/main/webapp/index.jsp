@@ -28,7 +28,7 @@
               <!-- Album de Items -->
               <div class="col">
                 <div class="card shadow-sm">
-                  <img alt="Nome Produto 1" src="./img/imagem3.jpeg" class="card-img-top"  height="300px">
+                  <img alt="Nome Produto 1" src="./img/imagem3.jpeg" class="card-img-top" style="object-fit: cover" height="300px">
                   <div class="card-body">
                   	<a href="./Produto.jsp?id=1" class="text-decoration-none">
                   		<h5 class="card-title">Nome Produto 1</h5>
@@ -45,7 +45,7 @@
               </div>
               <div class="col">
                 <div class="card shadow-sm">
-                  <img alt="Nome Produto 2" src="./img/imagem4.jpeg" class="card-img-top" height="300px">
+                  <img alt="Nome Produto 2" src="./img/imagem4.jpeg" class="card-img-top" style="object-fit: cover" height="300px">
                   <div class="card-body">
                   	<h5 class="card-title">Nome Produto 2</h5>
                     <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
@@ -60,7 +60,7 @@
               </div>
               <div class="col">
                 <div class="card shadow-sm">
-                  <img alt="Nome Produto 3" src="./img/imagem5.jpeg" class="card-img-top" height="300px">
+                  <img alt="Nome Produto 3" src="./img/imagem5.jpeg" class="card-img-top" style="object-fit: cover" height="300px">
                   <div class="card-body">
                   	<h5 class="card-title">Nome Produto 3</h5>
                     <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
@@ -75,7 +75,7 @@
               </div>
               <div class="col">
                 <div class="card shadow-sm">
-                  <img alt="Nome Produto 4" src="./img/imagem6.jpeg" class="card-img-top" height="300px">
+                  <img alt="Nome Produto 4" src="./img/imagem6.jpeg" class="card-img-top" style="object-fit: cover" height="300px">
                   <div class="card-body">
                   	<h5 class="card-title">Nome Produto 4</h5>
                     <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
