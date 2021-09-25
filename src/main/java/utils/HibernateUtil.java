@@ -7,10 +7,13 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 
+import entity.Produto;
 import entity.Usuario;
 
 public class HibernateUtil {
+	
     private static SessionFactory sessionFactory;
+    
     public static SessionFactory getSessionFactory() {
         if (sessionFactory == null) {
             try {
@@ -24,7 +27,8 @@ public class HibernateUtil {
                 settings.put(Environment.DIALECT, "org.hibernate.dialect.PostgreSQLDialect");
                 settings.put(Environment.SHOW_SQL, "true");
                 settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
-//                settings.put(Environment.HBM2DDL_AUTO, "create-drop");
+                settings.put(Environment.ENABLE_LAZY_LOAD_NO_TRANS, true);
+                settings.put(Environment.HBM2DDL_AUTO, "create");
                 
                 configuration.setProperties(settings);
                 configuration.addAnnotatedClass(Usuario.class);
