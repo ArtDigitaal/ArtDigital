@@ -7,9 +7,11 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 
+import entity.Categoria;
+import entity.Produto;
 import entity.Usuario;
 
-public class HibernateTestUtils {
+public class HibernateTestUtil {
     private static SessionFactory sessionFactory;
     
     public static SessionFactory getSessionFactory() {
@@ -29,6 +31,8 @@ public class HibernateTestUtils {
                 
                 configuration.setProperties(settings);
                 configuration.addAnnotatedClass(Usuario.class);
+                configuration.addAnnotatedClass(Produto.class);
+                configuration.addAnnotatedClass(Categoria.class);
 
                 var serviceRegistry = new StandardServiceRegistryBuilder()
                     .applySettings(configuration.getProperties()).build();
