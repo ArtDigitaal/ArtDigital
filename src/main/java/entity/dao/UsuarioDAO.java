@@ -20,6 +20,7 @@ public abstract class UsuarioDAO {
 	
 	/**
 	 * Salva um usuario no banco.
+	 * 
 	 * @param usuario Usuário para salvar.
 	 * @return salvo com sucesso (true) ou falha (false).
 	 */
@@ -42,6 +43,7 @@ public abstract class UsuarioDAO {
 	
 	/**
 	 * Lista os usuários salvos no banco.
+	 * 
 	 * @return Lista de usuários.
 	 */
 	public static List<Usuario> listarUsuarios() {
@@ -68,6 +70,7 @@ public abstract class UsuarioDAO {
 	
 	/**
 	 * Busca um usuario salvo no banco.
+	 * 
 	 * @param id Identificador do usuario.
 	 * @return Usuario encontrado.
 	 */
@@ -76,7 +79,7 @@ public abstract class UsuarioDAO {
 		var session = sessionFactory.openSession();
 		var transaction = session.beginTransaction();
 		try {
-			usuario = session.byId(Usuario.class).getReference(id);
+			usuario = (Usuario) session.get(Usuario.class, id);
 			transaction.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -90,6 +93,7 @@ public abstract class UsuarioDAO {
 	
 	/**
 	 * Deleta um usuário salvo no banco.
+	 * 
 	 * @param id Identificador do usuario.
 	 * @return deletado com sucesso (true) ou falha (false).
 	 */
@@ -98,7 +102,7 @@ public abstract class UsuarioDAO {
 		var session = sessionFactory.openSession();
 		var transaction = session.beginTransaction();
 		try {
-			var usuario = session.byId(Usuario.class).getReference(id);
+			var usuario = (Usuario) session.get(Usuario.class, id);
 			session.delete(usuario);
 			transaction.commit();
 			success = true;
@@ -113,6 +117,7 @@ public abstract class UsuarioDAO {
 	
 	/**
 	 * Atualiza um usuário salvo no banco.
+	 * 
 	 * @param usuario Usuário para atualizar.
 	 * @return atualizado com sucesso (true) ou falha (false).
 	 */
@@ -135,6 +140,7 @@ public abstract class UsuarioDAO {
 	
 	/**
 	 * Busca um usuário por email.
+	 * 
 	 * @param email Email do usuário.
 	 * @return Usuário encontrado.
 	 */
@@ -144,6 +150,7 @@ public abstract class UsuarioDAO {
 	
 	/**
 	 * Busca um usuário por cpf.
+	 * 
 	 * @param cpf Cpf do usuário.
 	 * @return Usuário encontrado.
 	 */
@@ -153,6 +160,7 @@ public abstract class UsuarioDAO {
 	
 	/**
 	 * Busca um usuário por cnpj.
+	 * 
 	 * @param cnpj Cnpj do usuário.
 	 * @return Usuário encontrado.
 	 */
@@ -162,6 +170,7 @@ public abstract class UsuarioDAO {
 	
 	/**
 	 * Busca um usuário salvo no banco.
+	 * 
 	 * @param nomeCampo Campo para buscar usuário.
 	 * @param valorCampo Valor do campo.
 	 * @return Usuário encontrado.
@@ -192,15 +201,13 @@ public abstract class UsuarioDAO {
 	
 	/**
 	 * Valida as credenciais de um usuário.
+	 * 
 	 * @param email Email do usuário.
 	 * @param senha Senha do usuário.
 	 * @return Usuario validado.
 	 */
 	public static Usuario validarUsuarioEmailSenha(String email, String senha) {
 		var usuario = procurarUsuarioPorEmail(email);
-		
-		System.out.println(usuario);
-		System.out.println(senha);
 		
 		if (usuario != null && !usuario.getSenha().equals(senha)) {
 			usuario = null;
