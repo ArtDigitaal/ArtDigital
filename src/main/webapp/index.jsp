@@ -9,86 +9,120 @@
 
     <%@include file='elementos/bootstrap5.html' %>
     
-    <title>ArtDigital</title>
+    <title>Início | ArtDigital</title>
 </head>
 <body>
     <%@include file='elementos/Header.jsp' %>
     
     <main class="flex-shrink-0">
-      <div class="container p-5">
+      <div class="container px-5 py-1">
         <div>
           <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
+            <input class="form-control me-2" style="border-radius: 0px; background-color: #c2c2c2" type="search" placeholder="Pesquisar" aria-label="Search">
+            <button class="btn btn-primary" style="border-radius: 0px" type="submit">Pesquisar</button>
           </form>
         </div>
-
-        <div class="album py-5">
-          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-              <!-- Album de Items -->
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img alt="Nome Produto 1" src="./img/imagem3.jpeg" class="card-img-top" style="object-fit: cover" height="300px">
-                  <div class="card-body">
-                  	<a href="./Produto.jsp?id=1" class="text-decoration-none">
-                  		<h5 class="card-title">Nome Produto 1</h5>
-                  	</a>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    <div class="d-flex justify-content-between align-items-center">
-                      <div class="btn-group" >
-                        <button type="button" class="btn btn-sm btn-outline-secondary" width:"250%">Comprar</button>
-                        <button type="button" class="btn btn-sm btn-outline-secondary">Carrinho</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img alt="Nome Produto 2" src="./img/imagem4.jpeg" class="card-img-top" style="object-fit: cover" height="300px">
-                  <div class="card-body">
-                  	<h5 class="card-title">Nome Produto 2</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    <div class="d-flex justify-content-between align-items-center">
-                      <div class="btn-group" >
-                        <button type="button" class="btn btn-sm btn-outline-secondary" width:"250%">Comprar</button>
-                        <button type="button" class="btn btn-sm btn-outline-secondary">Carrinho</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img alt="Nome Produto 3" src="./img/imagem5.jpeg" class="card-img-top" style="object-fit: cover" height="300px">
-                  <div class="card-body">
-                  	<h5 class="card-title">Nome Produto 3</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    <div class="d-flex justify-content-between align-items-center">
-                      <div class="btn-group" >
-                        <button type="button" class="btn btn-sm btn-outline-secondary" width:"250%">Comprar</button>
-                        <button type="button" class="btn btn-sm btn-outline-secondary">Carrinho</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img alt="Nome Produto 4" src="./img/imagem6.jpeg" class="card-img-top" style="object-fit: cover" height="300px">
-                  <div class="card-body">
-                  	<h5 class="card-title">Nome Produto 4</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    <div class="d-flex justify-content-between align-items-center">
-                      <div class="btn-group" >
-                        <button type="button" class="btn btn-sm btn-outline-secondary" width:"250%">Comprar</button>
-                        <button type="button" class="btn btn-sm btn-outline-secondary">Carrinho</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-          </div>
+        <div>
+        	<p>Resultados (999)</p>
+        </div>
+        
+        <div class="row">
+        	<div class="col-12 col-md-6 col-lg-4" >
+				<div class="p-3 my-3" style="background-color: #c8d9ed; border-radius: 15px">
+					<img src="./img/imagem3.jpeg"
+							style="object-fit: cover; border-radius: 15px;"
+							height=300px width=100%
+							alt="Foto do produto">
+					<a href="./produto.jsp?id=1" style="color: black; text-decoration: none">
+						<div class="d-flex flex-row justify-content-between m-2">
+							<h5>Nome do Produto</h5>
+							<h5>R$ 10,00</h5>
+						</div>
+					</a>
+					<div class="d-flex flex-row justify-content-center">
+						<button class="btn btn-primary mx-2">Comprar</button>
+						<button class="btn btn-outline-primary mx-2">Adicionar ao carrinho</button>
+					</div>
+				</div>
+			</div>
+			
+			<!-- startsection: Apagar -->
+			
+			
+        	<div class="col-12 col-md-6 col-lg-4" >
+				<div class="p-3 my-3" style="background-color: #c8d9ed; border-radius: 15px">
+					<img src="./img/imagem3.jpeg"
+							style="object-fit: cover; border-radius: 15px;"
+							height=300px width=100%
+							alt="Foto do produto">
+					<a href="./produto.jsp?id=1" style="color: black; text-decoration: none">
+						<div class="d-flex flex-row justify-content-between m-2">
+							<h5>Nome do Produto</h5>
+							<h5>R$ 10,00</h5>
+						</div>
+					</a>
+					<div class="d-flex flex-row justify-content-center">
+						<button class="btn btn-primary mx-2">Comprar</button>
+						<button class="btn btn-outline-primary mx-2">Adicionar ao carrinho</button>
+					</div>
+				</div>
+			</div>
+        	<div class="col-12 col-md-6 col-lg-4" >
+				<div class="p-3 my-3" style="background-color: #c8d9ed; border-radius: 15px">
+					<img src="./img/imagem3.jpeg"
+							style="object-fit: cover; border-radius: 15px;"
+							height=300px width=100%
+							alt="Foto do produto">
+					<a href="./produto.jsp?id=1" style="color: black; text-decoration: none">
+						<div class="d-flex flex-row justify-content-between m-2">
+							<h5>Nome do Produto</h5>
+							<h5>R$ 10,00</h5>
+						</div>
+					</a>
+					<div class="d-flex flex-row justify-content-center">
+						<button class="btn btn-primary mx-2">Comprar</button>
+						<button class="btn btn-outline-primary mx-2">Adicionar ao carrinho</button>
+					</div>
+				</div>
+			</div>
+        	<div class="col-12 col-md-6 col-lg-4" >
+				<div class="p-3 my-3" style="background-color: #c8d9ed; border-radius: 15px">
+					<img src="./img/imagem3.jpeg"
+							style="object-fit: cover; border-radius: 15px;"
+							height=300px width=100%
+							alt="Foto do produto">
+					<a href="./produto.jsp?id=1" style="color: black; text-decoration: none">
+						<div class="d-flex flex-row justify-content-between m-2">
+							<h5>Nome do Produto</h5>
+							<h5>R$ 10,00</h5>
+						</div>
+					</a>
+					<div class="d-flex flex-row justify-content-center">
+						<button class="btn btn-primary mx-2">Comprar</button>
+						<button class="btn btn-outline-primary mx-2">Adicionar ao carrinho</button>
+					</div>
+				</div>
+			</div>
+        	<div class="col-12 col-md-6 col-lg-4" >
+				<div class="p-3 my-3" style="background-color: #c8d9ed; border-radius: 15px">
+					<img src="./img/imagem3.jpeg"
+							style="object-fit: cover; border-radius: 15px;"
+							height=300px width=100%
+							alt="Foto do produto">
+					<a href="./produto.jsp?id=1" style="color: black; text-decoration: none">
+						<div class="d-flex flex-row justify-content-between m-2">
+							<h5>Nome do Produto</h5>
+							<h5>R$ 10,00</h5>
+						</div>
+					</a>
+					<div class="d-flex flex-row justify-content-center">
+						<button class="btn btn-primary mx-2">Comprar</button>
+						<button class="btn btn-outline-primary mx-2">Adicionar ao carrinho</button>
+					</div>
+				</div>
+			</div>
+			
+			<!-- endsection: Apagar -->
         </div>
       </div>
     </main>
