@@ -12,7 +12,7 @@
 	<title>Recuperar Senha | ArtDigital</title>
 </head>
 <body>
-    <%@include file='elementos/Header.jsp' %>
+    <%@include file='elementos/header.jsp' %>
 	
 	<script>
 		function mostrarCampos() {

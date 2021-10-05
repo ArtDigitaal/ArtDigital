@@ -55,7 +55,7 @@
 			out.print("alert('Falha ao atualizar usuario.')");
 		}
 	}%>
-	window.location = '../MinhaConta.jsp';
+	window.location = '../minha-conta.jsp';
 </script>
 </body>
 </html>

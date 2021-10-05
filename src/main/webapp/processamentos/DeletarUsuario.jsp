@@ -25,7 +25,7 @@
 		session.setAttribute("usuarioValidado", null);
 	}
 	%>
-	window.location = '../Login.jsp';
+	window.location = '../login.jsp';
 </script>
 </body>
 </html>
