@@ -82,7 +82,7 @@
 		} else {
 			out.print("<script>alert('Falha ao criar usuario.');</script>");
 		}
-	%><script>window.location = '../Login.jsp';</script><%
+	%><script>window.location = '../login.jsp';</script><%
 	} else {
 		%><script>history.back();</script><%
 	}

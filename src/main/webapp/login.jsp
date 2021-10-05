@@ -12,7 +12,7 @@
     <title>Entrar | ArtDigital</title>
 </head>
 <body>
-    <%@include file='elementos/Header.jsp' %>
+    <%@include file='elementos/header.jsp' %>
     
     <script type="text/javascript">
     	document.getElementById('headerButtonLogin').classList.add("disabled");
@@ -32,7 +32,7 @@
             <input type="password" class="form-control" id="passwordInput" name="passwordInput" placeholder="Senha" required>
           </div>
           <div class="col-md-12 text-center">
-          	<a href="./RecuperarSenha.jsp" class="text-decoration-none">Esqueci minha senha!</a>
+          	<a href="./recuperar-senha.jsp" class="text-decoration-none">Esqueci minha senha!</a>
           </div>
           <div class="col-12">
             <div class="d-grid gap-2 d-md-flex justify-content-md-center">

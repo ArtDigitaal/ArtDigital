@@ -12,7 +12,7 @@
     <title>Cadastro | ArtDigital</title>
 </head>
 <body>
-    <%@include file='elementos/Header.jsp' %>
+    <%@include file='elementos/header.jsp' %>
     
     <script type="text/javascript">
     	document.getElementById('headerButtonSignup').classList.add("disabled");
