@@ -15,7 +15,7 @@
 	<title>Informações do Produto | ArtDigital</title>
 </head>
 <body>
-    <%@include file='elementos/Header.jsp' %>
+    <%@include file='elementos/header.jsp' %>
 
 	<%
 	Long id = Long.parseLong(request.getParameter("id"));
