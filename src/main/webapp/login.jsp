@@ -19,28 +19,45 @@
     </script>
     
     <main class="flex-shrink-0">
-      <div class="container p-5">
-        <div class="text-center">
-          <h1>Entrar</h1>
-          <p>Digite suas credenciais para entrar no sistema!</p>
-        </div>
-        <form action="./processamentos/ProcessarLogin.jsp" method="post" class="row g-3 justify-content-center mx-auto" style="max-width: 500px;">
-          <div class="col-md-12">
-            <input type="email" class="form-control" id="emailInput" name="emailInput" placeholder="Email" required>
-          </div>
-          <div class="col-md-12">
-            <input type="password" class="form-control" id="passwordInput" name="passwordInput" placeholder="Senha" required>
-          </div>
-          <div class="col-md-12 text-center">
-          	<a href="./recuperar-senha.jsp" class="text-decoration-none">Esqueci minha senha!</a>
-          </div>
-          <div class="col-12">
-            <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-              <button class="btn btn-outline-secundary" onclick="history.back()">Voltar</button>
-              <button type="submit" class="btn btn-outline-primary">Continuar</button>
-            </div>
-          </div>
-        </form>
+      <div class="container px-5 py-1">
+      
+      	<div class="p-3 my-3 mx-auto" style="background-color: #c8d9ed; border-radius: 15px; max-width: 500px;">
+			<div class="text-center">
+	        	<p>Digite suas credenciais para entrar no sistema!</p>
+	        </div>
+	        <form action="./processamentos/ProcessarLogin.jsp" method="post" class="row g-3 justify-content-center mx-auto" style="max-width: 500px;">
+	        	<div class="col-md-12">
+	            	<input type="email"
+	            		class="form-control"
+	            		style="background-color: #c2c2c2"
+	            		id="emailInput"
+	            		name="emailInput"
+	            		placeholder="Email"
+	            		required>
+	          	</div>
+	          	<div class="col-md-12">
+	            	<input type="password"
+		            	class="form-control"
+	            		style="background-color: #c2c2c2"
+		            	id="passwordInput" 
+		            	name="passwordInput" 
+		            	placeholder="Senha" 
+		            	required>
+	          	</div>
+	          	<div class="col-12">
+	            	<div class="d-grid gap-2 d-md-flex justify-content-md-center">
+	              		<button type="submit" class="btn btn-primary">Entrar</button>
+	            	</div>
+	          	</div>
+	        </form>
+		</div>
+		
+       	<div class="text-center py-2">
+       		Não tem uma conta? <a href="./cadastro.jsp" class="text-decoration-none">Cadastre-se</a>!
+       	</div>
+       	<div class="text-center py-2">
+       		<a href="./recuperar-senha.jsp" class="text-decoration-none">Esqueci minha senha!</a>
+       	</div>
       </div>
     </main>
 
