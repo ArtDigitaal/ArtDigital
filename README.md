@@ -16,8 +16,8 @@ Uma quantidade massiva de artesãos produz suas obras e enfrentam dificuldade em
 
   * Atividade 04: 1.4 – Grupo – Definir as tarefas de cada membro da equipe e definir o líder da equipe (Scrum Master).
 
-     •	Scrum Master – José Douglas
-     •	Documentação – Jefferson Queiroz
+     •	Scrum Master – José Douglas \n
+     •	Documentação – Jefferson Queiroz \n
      •	Banco de dados – Ellis Costa
      •	Front-End – André Luan
      •	Back-End – Daniel Marcelo
