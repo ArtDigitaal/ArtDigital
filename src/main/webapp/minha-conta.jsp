@@ -21,19 +21,19 @@ function botaoDeletarUsuario() {
 	
 	<main class="flex-shrink-0">
 	<div class="container p-5">
-	<%
-	Object usuarioValidado = session.getAttribute("usuarioValidado");
-
-			if (usuarioValidado != null) {
-		Usuario usuario = (Usuario) usuarioValidado;
-		
-		String usuarioCpfCnpj = "";
-		if (usuario.getCpf() == null) {
-			usuarioCpfCnpj = usuario.getCnpj();
-		} else if (usuario.getCnpj() == null) {
-			usuarioCpfCnpj = usuario.getCpf();
-		}
-	%>
+		<%
+		Object usuarioValidado = session.getAttribute("usuarioValidado");
+	
+		if (usuarioValidado != null) {
+			Usuario usuario = (Usuario) usuarioValidado;
+			
+			String usuarioCpfCnpj = "";
+			if (usuario.getCpf() == null) {
+				usuarioCpfCnpj = usuario.getCnpj();
+			} else if (usuario.getCnpj() == null) {
+				usuarioCpfCnpj = usuario.getCpf();
+			}
+		%>
 		<div class="text-center pb-5">
 			<h1><%=usuario.getNome() %></h1>
 			<h6><%=usuario.getEmail() %></h6>
@@ -41,40 +41,19 @@ function botaoDeletarUsuario() {
 		<div class="d-grid gap-2 d-md-flex justify-content-md-center pb-5">
 			<table class="table table-user-information text-center" style="max-width: 25%">
 				<tbody>
-				    <tr>
-				      <td>CPF/CNPJ</td>
-				      <td><%=usuarioCpfCnpj %></td>
-				    </tr>
-				    <tr>
-				      <td>Nascimento</td>
-				      <td><%=usuario.getDataNasc() %></td>
-				    </tr>
-			<%
-			if (usuario.getRua().trim().length() != 0) {
-					%>
-					<tr>
-						<td>Rua</td>
-						<td><%=usuario.getRua() %></td>
-					</tr>
+				    <tr><td>CPF/CNPJ</td><td><%=usuarioCpfCnpj %></td></tr>
 					<%
-			}
-			if (usuario.getNumero() != 0) {
+					if (usuario.getRua().trim().length() != 0) {
+						%><tr><td>Rua</td><td><%=usuario.getRua() %></td></tr><%
+					}
+					if (usuario.getNumero() != 0) {
+						%><tr><td>Número</td><td><%=usuario.getNumero() %></td></tr><%		
+					}
+					if (usuario.getCep() != null) {
+						%><tr><td>Cep</td><td><%=usuario.getCep() %></td></tr><%
+					}
 					%>
-					<tr>
-						<td>Número</td>
-						<td><%=usuario.getNumero() %></td>
-					</tr>
-					<%		
-			}
-			%>
-					<tr>
-						<td>Cidade</td>
-						<td><%=usuario.getCidade() %></td>
-					</tr>
-					<tr>
-						<td>Cep</td>
-						<td><%=usuario.getCep() %></td>
-					</tr>
+					<tr><td>Cidade</td><td><%=usuario.getCidade() %></td></tr>
 			  </tbody>
 			</table>
 		</div>
@@ -104,9 +83,6 @@ function botaoDeletarUsuario() {
 		          </div>
 		          <div class="col-md-12">
 		            <input type="text" class="form-control" id="inputCpfCnpj" name="inputCpfCnpj" placeholder="CPF/CNPJ" value="<%=usuarioCpfCnpj %>" disabled required>
-		          </div>
-		          <div class="col-md-12">
-		          	<input class="form-control" id="inputDate" name="inputDate" type="date" placeholder="Nascimento" value="<%=usuario.getDataNasc() %>" required>
 		          </div>
 		          <div class="col-md-12">
 		            <input type="email" class="form-control" id="emailInput" name="emailInput" placeholder="Email" value="<%=usuario.getEmail() %>" required disabled>
@@ -154,11 +130,11 @@ function botaoDeletarUsuario() {
 		    </div>
 		  </div>
 		</div>
-	<%
-	} else {
-		%><p>Não existe um usuario logado no sistema.</p><%
-	}
-	%>
+		<%
+		} else {
+			%><p>Não existe um usuario logado no sistema.</p><%
+		}
+		%>
 	</div>
 	</main>
 	

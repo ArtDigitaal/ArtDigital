@@ -8,6 +8,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 
 import entity.Categoria;
+import entity.Login;
 import entity.Produto;
 import entity.Usuario;
 
@@ -22,9 +23,9 @@ public class HibernateUtil {
                 
                 var settings = new Properties();
                 settings.put(Environment.DRIVER, "org.postgresql.Driver");
-                settings.put(Environment.URL, "jdbc:postgresql://localhost:42109/ARTDIGITAL");
-                settings.put(Environment.USER, "postgres");
-                settings.put(Environment.PASS, "my-secret-pw");
+                settings.put(Environment.URL, "jdbc:postgresql://localhost:34859/artdigital");
+                settings.put(Environment.USER, "artdigital");
+                settings.put(Environment.PASS, "artdigitalpw");
                 settings.put(Environment.DIALECT, "org.hibernate.dialect.PostgreSQLDialect");
                 settings.put(Environment.SHOW_SQL, "true");
                 settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
@@ -35,6 +36,7 @@ public class HibernateUtil {
                 configuration.addAnnotatedClass(Usuario.class);
                 configuration.addAnnotatedClass(Produto.class);
                 configuration.addAnnotatedClass(Categoria.class);
+                configuration.addAnnotatedClass(Login.class);
 
                 var serviceRegistry = new StandardServiceRegistryBuilder()
                     .applySettings(configuration.getProperties()).build();

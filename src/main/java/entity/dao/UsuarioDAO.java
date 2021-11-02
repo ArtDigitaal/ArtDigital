@@ -209,7 +209,7 @@ public abstract class UsuarioDAO {
 	public static Usuario validarUsuarioEmailSenha(String email, String senha) {
 		var usuario = procurarUsuarioPorEmail(email);
 		
-		if (usuario != null && !usuario.getSenha().equals(senha)) {
+		if (usuario != null && !usuario.getLogin().getSenha().equals(senha)) {
 			usuario = null;
 		}
 		return usuario;

@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<%@page import="java.time.LocalDateTime"%>
+<%@page import="entity.Login"%>
 <%@page import="entity.dao.UsuarioDAO"%>
 <%@page import="java.time.LocalDate"%>
 <%@page import="entity.Usuario"%>
@@ -12,36 +14,28 @@
 </head>
 <body>
 	<%
-	String nome = (String) request.getParameter("inputName");
-	String email = (String) request.getParameter("emailInput");
-	String rua = (String) request.getParameter("addressInput");
-	String cep = (String) request.getParameter("inputZip");
+	String nome   = (String) request.getParameter("nomeInput");
+	String email  = (String) request.getParameter("emailInput");
+	String rua    = (String) request.getParameter("ruaInput");
+	String cep    = (String) request.getParameter("cepInput");
+	String bairro = (String) request.getParameter("bairroInput");
+	String cidade = (String) request.getParameter("cidadeInput");
+	
+	// numero
 	Integer numero = 0;
-	String cidade = (String) request.getParameter("cityInput");
-	String cpf = null;
-	String cnpj = null;
-	String senha = (String) request.getParameter("passwordInput");
 	
 	try {
-		numero = Integer.parseInt(request.getParameter("numberInput"));
+		numero = Integer.parseInt(request.getParameter("numeroInput"));
 	} catch (Exception e) {
 		numero = 0;
 	}
 	
-	/* Processando data de nascimento */
-	
-	String inputDate = (String) request.getParameter("inputDate");
-	String[] arrayDate = inputDate.split("-");
-	
-	LocalDate dataNasc = LocalDate.of(
-		Integer.parseInt(arrayDate[0]),
-		Integer.parseInt(arrayDate[1]),
-		Integer.parseInt(arrayDate[2])
-	);
-	
 	/* Processando cpf e cnpj */
-	String inputAccountType = (String) request.getParameter("inputAccountType");
-	String inputCpfCnpj = (String) request.getParameter("inputCpfCnpj");
+	String inputAccountType = (String) request.getParameter("tipoInput");
+	String inputCpfCnpj = (String) request.getParameter("documentoInput");
+
+	String cpf = null;
+	String cnpj = null;
 	
 	if (inputAccountType.equals("CPF")) {
 		cpf = inputCpfCnpj;
@@ -63,17 +57,23 @@
 		usuarioExiste = true;
 	}
 	
+	// login
+	String senha = (String) request.getParameter("passwordInput1");
+	Login login = new Login(senha, LocalDateTime.now());
+	
 	Usuario usuario = new Usuario(
-		nome,
-		email,
-		senha,
-		cep,
-		rua,
-		numero,
-		cidade,
-		cpf,
-		cnpj,
-		dataNasc
+			nome,
+			null,
+			email,
+			login,
+			cep,
+			bairro,
+			rua,
+			numero,
+			cidade,
+			null,
+			cpf,
+			cnpj
 	);
 	
 	if (!usuarioExiste) {
@@ -82,7 +82,7 @@
 		} else {
 			out.print("<script>alert('Falha ao criar usuario.');</script>");
 		}
-	%><script>window.location = '../login.jsp';</script><%
+		%><script>window.location = '../login.jsp';</script><%
 	} else {
 		%><script>history.back();</script><%
 	}
