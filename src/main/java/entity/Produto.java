@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -24,6 +25,9 @@ public class Produto {
 	private int quantidade;
 	@Column(name = "valor_unit")
 	private Double valorUnit;
+	@OneToOne
+	@JoinColumn(name = "cod_img", nullable = false)
+	private Imagem imagem;
 	@ManyToOne
 	@JoinColumn(name = "cod_categ", nullable = false)
 	private Categoria categoria;
@@ -31,7 +35,7 @@ public class Produto {
 	public Produto() {
 	}
 	
-	public Produto(Long id, String descricao, String nome, int quantidade, Double valorUnit, Categoria categoria) {
+	public Produto(Long id, String descricao, String nome, int quantidade, Double valorUnit, Categoria categoria, Imagem imagem) {
 		super();
 		this.id = id;
 		this.descricao = descricao;
@@ -39,6 +43,7 @@ public class Produto {
 		this.quantidade = quantidade;
 		this.valorUnit = valorUnit;
 		this.categoria = categoria;
+		this.imagem = imagem;
 	}
 	
 	public Long getId() {
@@ -88,11 +93,19 @@ public class Produto {
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
+	
+	public Imagem getImagem() {
+		return this.imagem;
+	}
+	
+	public void setImagem(Imagem imagem) {
+		
+	}
 
 	@Override
 	public String toString() {
 		return "Produto [id=" + id + ", descricao=" + descricao + ", nome=" + nome + ", quantidade=" + quantidade
-				+ ", valorUnit=" + valorUnit + ", categoria=" + categoria + "]";
+				+ ", valorUnit=" + valorUnit + ", categoria=" + categoria + ", imagem=" + imagem + "]";
 	}
 	
 }
