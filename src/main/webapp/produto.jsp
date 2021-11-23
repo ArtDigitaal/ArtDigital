@@ -1,3 +1,4 @@
+<%@page import="java.util.Base64"%>
 <%@page import="entity.Produto"%>
 <%@page import="entity.dao.ProdutoDAO"%>
 <%@page import="entity.dao.UsuarioDAO"%>
@@ -26,7 +27,7 @@
 		<% if (produto != null) { %>
 			<div class="d-flex flex-lg-row flex-column justify-content-center p-3" style="background-color: #c8d9ed; border-radius: 15px 15px 0px 0px">
 				<div class="m-3" style="object-fit: cover; border-radius: 15px;">
-					<img src="./img/imagem3.jpeg"
+					<img src="data:<%= produto.getImagem().getTipo() %>;base64,<%= Base64.getEncoder().encodeToString(produto.getImagem().getBytes()) %>"
 						style="object-fit: cover; border-radius: 15px;"
 						height=400px width=100%
 						alt="Foto do produto">

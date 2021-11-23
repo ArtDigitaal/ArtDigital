@@ -1,3 +1,8 @@
+<%@page import="java.util.Base64"%>
+<%@page import="java.nio.charset.StandardCharsets"%>
+<%@page import="entity.Produto"%>
+<%@page import="java.util.List"%>
+<%@page import="entity.dao.ProdutoDAO"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -14,6 +19,10 @@
 <body>
     <%@include file='elementos/header.jsp' %>
     
+    <%
+    List<Produto> produtos = ProdutoDAO.listarProdutos();
+    %>
+    
     <main class="flex-shrink-0">
       <div class="container px-5 py-1">
         <div>
@@ -23,20 +32,21 @@
           </form>
         </div>
         <div>
-        	<p>Resultados (999)</p>
+        	<p>Resultados (<%= produtos.size() %>)</p>
         </div>
         
         <div class="row">
+        <% for (Produto produto : produtos) { %>
         	<div class="col-12 col-md-6 col-lg-4" >
 				<div class="p-3 my-3" style="background-color: #c8d9ed; border-radius: 15px">
-					<img src="./img/imagem3.jpeg"
+					<img src="data:<%= produto.getImagem().getTipo() %>;base64,<%= Base64.getEncoder().encodeToString(produto.getImagem().getBytes()) %>"
 							style="object-fit: cover; border-radius: 15px;"
 							height=300px width=100%
 							alt="Foto do produto">
-					<a href="./produto.jsp?id=1" style="color: black; text-decoration: none">
+					<a href="./produto.jsp?id=<%= produto.getId() %>" style="color: black; text-decoration: none">
 						<div class="d-flex flex-row justify-content-between m-2">
-							<h5>Nome do Produto</h5>
-							<h5>R$ 10,00</h5>
+							<h5><%= produto.getNome() %></h5>
+							<h5>R$ <%= produto.getValorUnit() %></h5>
 						</div>
 					</a>
 					<div class="d-flex flex-row justify-content-center">
@@ -45,84 +55,7 @@
 					</div>
 				</div>
 			</div>
-			
-			<!-- startsection: Apagar -->
-			
-			
-        	<div class="col-12 col-md-6 col-lg-4" >
-				<div class="p-3 my-3" style="background-color: #c8d9ed; border-radius: 15px">
-					<img src="./img/imagem3.jpeg"
-							style="object-fit: cover; border-radius: 15px;"
-							height=300px width=100%
-							alt="Foto do produto">
-					<a href="./produto.jsp?id=1" style="color: black; text-decoration: none">
-						<div class="d-flex flex-row justify-content-between m-2">
-							<h5>Nome do Produto</h5>
-							<h5>R$ 10,00</h5>
-						</div>
-					</a>
-					<div class="d-flex flex-row justify-content-center">
-						<button class="btn btn-primary mx-2">Comprar</button>
-						<button class="btn btn-outline-primary mx-2">Adicionar ao carrinho</button>
-					</div>
-				</div>
-			</div>
-        	<div class="col-12 col-md-6 col-lg-4" >
-				<div class="p-3 my-3" style="background-color: #c8d9ed; border-radius: 15px">
-					<img src="./img/imagem3.jpeg"
-							style="object-fit: cover; border-radius: 15px;"
-							height=300px width=100%
-							alt="Foto do produto">
-					<a href="./produto.jsp?id=1" style="color: black; text-decoration: none">
-						<div class="d-flex flex-row justify-content-between m-2">
-							<h5>Nome do Produto</h5>
-							<h5>R$ 10,00</h5>
-						</div>
-					</a>
-					<div class="d-flex flex-row justify-content-center">
-						<button class="btn btn-primary mx-2">Comprar</button>
-						<button class="btn btn-outline-primary mx-2">Adicionar ao carrinho</button>
-					</div>
-				</div>
-			</div>
-        	<div class="col-12 col-md-6 col-lg-4" >
-				<div class="p-3 my-3" style="background-color: #c8d9ed; border-radius: 15px">
-					<img src="./img/imagem3.jpeg"
-							style="object-fit: cover; border-radius: 15px;"
-							height=300px width=100%
-							alt="Foto do produto">
-					<a href="./produto.jsp?id=1" style="color: black; text-decoration: none">
-						<div class="d-flex flex-row justify-content-between m-2">
-							<h5>Nome do Produto</h5>
-							<h5>R$ 10,00</h5>
-						</div>
-					</a>
-					<div class="d-flex flex-row justify-content-center">
-						<button class="btn btn-primary mx-2">Comprar</button>
-						<button class="btn btn-outline-primary mx-2">Adicionar ao carrinho</button>
-					</div>
-				</div>
-			</div>
-        	<div class="col-12 col-md-6 col-lg-4" >
-				<div class="p-3 my-3" style="background-color: #c8d9ed; border-radius: 15px">
-					<img src="./img/imagem3.jpeg"
-							style="object-fit: cover; border-radius: 15px;"
-							height=300px width=100%
-							alt="Foto do produto">
-					<a href="./produto.jsp?id=1" style="color: black; text-decoration: none">
-						<div class="d-flex flex-row justify-content-between m-2">
-							<h5>Nome do Produto</h5>
-							<h5>R$ 10,00</h5>
-						</div>
-					</a>
-					<div class="d-flex flex-row justify-content-center">
-						<button class="btn btn-primary mx-2">Comprar</button>
-						<button class="btn btn-outline-primary mx-2">Adicionar ao carrinho</button>
-					</div>
-				</div>
-			</div>
-			
-			<!-- endsection: Apagar -->
+        <% } %>
         </div>
       </div>
     </main>

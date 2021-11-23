@@ -1,10 +1,14 @@
 package entity.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.hibernate.SessionFactory;
 import org.hibernate.annotations.common.util.impl.LoggerFactory;
 import org.jboss.logging.Logger;
 
 import entity.Produto;
+import entity.Usuario;
 import utils.HibernateUtil;
 
 public class ProdutoDAO {
@@ -13,6 +17,28 @@ public class ProdutoDAO {
 	
 	/** Log */
 	static final Logger logger = LoggerFactory.logger(ProdutoDAO.class);
+	
+	public static List<Produto> listarProdutos() {
+		List<Produto> produtos = null;
+		var session = sessionFactory.openSession();
+		var transaction = session.beginTransaction();
+		
+		try {
+			var criteriaBuilder = session.getCriteriaBuilder();
+			var query = criteriaBuilder.createQuery(Produto.class);
+			
+			query.select(query.from(Produto.class));
+			produtos = session.createQuery(query).list();
+			transaction.commit();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			transaction.rollback();
+		} finally {
+			session.close();
+		}
+		
+		return produtos;
+	}
 
 	/**
 	 * Busca um produto no banco.
