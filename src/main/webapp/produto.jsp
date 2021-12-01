@@ -57,7 +57,7 @@
 		<% } else { %>
 			<div class="p-3" style="background-color: #c8d9ed; border-radius: 15px 15px 0px 0px">
 				<h3>Produto não encontrado</h3>
-				<p>Este produto ter sido removido pelo anunciante</p>
+				<p>Este produto deve ter sido removido pelo anunciante</p>
 			</div>
 			<div class="d-flex justify-content-md-end justify-content-center w-100" style="height: auto; background-color: #c2c2c2;">
 				<button class="btn border border-2 border-dark m-4" 
