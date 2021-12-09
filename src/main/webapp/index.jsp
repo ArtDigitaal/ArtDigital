@@ -20,19 +20,20 @@
     <%@include file='elementos/header.jsp' %>
     
     <%
-    List<Produto> produtos = ProdutoDAO.listarProdutos();
+    String buscar = request.getParameter("buscar");
+    List<Produto> produtos = ProdutoDAO.listarProdutos(buscar);
     %>
     
     <main class="flex-shrink-0">
       <div class="container px-5 py-1">
         <div>
-          <form class="d-flex">
-            <input class="form-control me-2" style="border-radius: 0px; background-color: #c2c2c2" type="search" placeholder="Pesquisar" aria-label="Search">
+          <form action="index.jsp" method="get" class="d-flex">
+            <input id="buscar" name="buscar" class="form-control me-2" style="border-radius: 0px; background-color: #c2c2c2" type="search" placeholder="Pesquisar" aria-label="Search">
             <button class="btn btn-primary" style="border-radius: 0px" type="submit">Pesquisar</button>
           </form>
         </div>
         <div>
-        	<p>Resultados (<%= produtos.size() %>)</p>
+        	<p>Resultados <% if (buscar != null) out.print("para \"" + buscar + "\""); %> (<%= produtos.size() %>)</p>
         </div>
         
         <div class="row">
