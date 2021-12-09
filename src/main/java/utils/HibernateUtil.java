@@ -9,6 +9,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 
 import entity.Categoria;
+import entity.Imagem;
 import entity.Login;
 import entity.Produto;
 import entity.Usuario;
@@ -37,13 +38,14 @@ public class HibernateUtil {
                 settings.put(Environment.SHOW_SQL, "true");
                 settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
                 settings.put(Environment.ENABLE_LAZY_LOAD_NO_TRANS, true);
-                settings.put(Environment.HBM2DDL_AUTO, "create");
+                settings.put(Environment.HBM2DDL_AUTO, "update");
                 
                 configuration.setProperties(settings);
                 configuration.addAnnotatedClass(Usuario.class);
                 configuration.addAnnotatedClass(Produto.class);
                 configuration.addAnnotatedClass(Categoria.class);
                 configuration.addAnnotatedClass(Login.class);
+                configuration.addAnnotatedClass(Imagem.class);
 
                 var serviceRegistry = new StandardServiceRegistryBuilder()
                     .applySettings(configuration.getProperties()).build();
