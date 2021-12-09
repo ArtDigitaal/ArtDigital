@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.annotations.common.util.impl.LoggerFactory;
+import org.hibernate.criterion.Restrictions;
 import org.jboss.logging.Logger;
 
 import entity.Produto;
@@ -18,16 +19,24 @@ public class ProdutoDAO {
 	/** Log */
 	static final Logger logger = LoggerFactory.logger(ProdutoDAO.class);
 	
-	public static List<Produto> listarProdutos() {
+	public static List<Produto> listarProdutos(String buscar) {
 		List<Produto> produtos = null;
 		var session = sessionFactory.openSession();
 		var transaction = session.beginTransaction();
 		
 		try {
-			var criteriaBuilder = session.getCriteriaBuilder();
-			var query = criteriaBuilder.createQuery(Produto.class);
+			var builder = session.getCriteriaBuilder();
+			var query = builder.createQuery(Produto.class);
 			
-			query.select(query.from(Produto.class));
+			var from = query.from(Produto.class);
+			query.select(from);
+			
+			if (buscar != null) {
+				var equalNome = builder.like(builder.lower(from.get("nome")), "%" + buscar.toLowerCase() + "%");
+				var equalDescricao = builder.like(builder.lower(from.get("descricao")), "%" + buscar.toLowerCase() + "%");
+				query.where(builder.or(equalNome, equalDescricao));
+			}
+			
 			produtos = session.createQuery(query).list();
 			transaction.commit();
 		} catch (Exception e) {
