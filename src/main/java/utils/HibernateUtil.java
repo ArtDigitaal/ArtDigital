@@ -21,24 +21,24 @@ public class HibernateUtil {
     public static SessionFactory getSessionFactory() {
         if (sessionFactory == null) {
             try {
-            	URI dbUri = new URI(System.getenv("DATABASE_URL"));
-
-                String username = dbUri.getUserInfo().split(":")[0];
-                String password = dbUri.getUserInfo().split(":")[1];
-                String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath() + "?sslmode=require";
+//            	URI dbUri = new URI(System.getenv("DATABASE_URL"));
+//
+//                String username = dbUri.getUserInfo().split(":")[0];
+//                String password = dbUri.getUserInfo().split(":")[1];
+//                String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath() + "?sslmode=require";
             	
                 var configuration = new Configuration();
                 
                 var settings = new Properties();
                 settings.put(Environment.DRIVER, "org.postgresql.Driver");
-                settings.put(Environment.URL, dbUrl);
-                settings.put(Environment.USER, username);
-                settings.put(Environment.PASS, password);
+                settings.put(Environment.URL, "jdbc:postgresql://localhost:5432/postgres");
+                settings.put(Environment.USER, "postgres");
+                settings.put(Environment.PASS, "1234");
                 settings.put(Environment.DIALECT, "org.hibernate.dialect.PostgreSQLDialect");
                 settings.put(Environment.SHOW_SQL, "true");
                 settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
                 settings.put(Environment.ENABLE_LAZY_LOAD_NO_TRANS, true);
-                settings.put(Environment.HBM2DDL_AUTO, "update");
+                //settings.put(Environment.HBM2DDL_AUTO, "create");
                 
                 configuration.setProperties(settings);
                 configuration.addAnnotatedClass(Usuario.class);
