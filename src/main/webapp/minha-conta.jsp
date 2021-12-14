@@ -137,7 +137,5 @@ function botaoDeletarUsuario() {
 		%>
 	</div>
 	</main>
-	
-	<%@include file='elementos/footer.html'%>
 </body>
 </html>
