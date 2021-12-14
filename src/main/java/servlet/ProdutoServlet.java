@@ -12,6 +12,7 @@ import java.util.List;
 import entity.Categoria;
 import entity.Imagem;
 import entity.Produto;
+import entity.Usuario;
 import entity.dao.CategoriaDAO;
 import entity.dao.ProdutoDAO;
 import jakarta.servlet.ServletException;
@@ -19,6 +20,7 @@ import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
 
 /**
@@ -64,7 +66,11 @@ public class ProdutoServlet extends HttpServlet {
 			Files.readAllBytes(file.toPath())
 		);
 		
-		Produto produto = new Produto(descricao, nome, quantidade, preco, categoria, imagem);
+		HttpSession session = request.getSession();
+		Usuario usuario = (Usuario) session.getAttribute("usuarioValidado");
+		
+		Produto produto = new Produto(descricao, nome, quantidade, preco, categoria, imagem, usuario);
+		System.out.println(produto);
 		
 		boolean success;
 		try {
