@@ -38,7 +38,7 @@
 						<h3>R$ <%= String.format("%.2f", produto.getValorUnit()) %></h3>
 					</div>
 					<div class="d-flex justify-content-between">
-						<p>(link) Nome da pessoa quem postou</p>
+						<p><%= produto.getUsuario().getNome() %> - <%= produto.getUsuario().getEmail() %></p>
 						<p><%= produto.getQuantidade() %> itens disponíveis</p>
 					</div>
 					<div class="d-flex flex-column">
