@@ -61,10 +61,6 @@
       </div>
     </main>
 
-    <footer class="fixed-bottom footer mt-auto py-3 bg-light">
-      <div class="container">
-        <span class="text-muted">2021 ArtDigital</span>
-      </div>
-    </footer>
+    <%@include file='elementos/footer.html' %>
 </body>
 </html>

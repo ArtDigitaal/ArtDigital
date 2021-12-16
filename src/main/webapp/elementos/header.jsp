@@ -2,10 +2,10 @@
 <%@page import="entity.Categoria"%>
 <%@page import="entity.dao.CategoriaDAO"%>
 <%@page import="entity.Usuario"%>
-<body>
+<body style="background-image: url('./img/arte5.jpg');">
 	<header
 		class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between p-3 mb-4 border-bottom"
-		style="background-color: #EEDD82;">
+		style="background-color: #EEDD82; background-image: url('./img/barra2.jpg');">
 		
 		<div class="container">
 			<div class="row">
