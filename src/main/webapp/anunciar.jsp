@@ -92,18 +92,8 @@
 		%>
 		<div class="p-3 my-3 mx-auto"
 			style="background-color: #c8d9ed; border-radius: 15px; max-width: 1000px">
-			<%
-			String error = request.getParameter("error");
-			if (error != null) {
-				%>
-				<div class="alert alert-danger" role="alert">
-				  <%= error %>
-				</div>
-				<%
-			}
-			%>
 			<form id="formularioAnunciar"
-				action="ProdutoServlet" method="post" enctype="multipart/form-data"
+				action="./processamentos/ProcessarAnunciar.jsp" method="post"
 				class="row g-3 justify-content-center mx-auto">
 
 				<div class="text-center">
@@ -282,7 +272,17 @@
 		</div>
 		<%
 		} else {
-			response.sendRedirect("login.jsp");
+		%>
+
+		<div class="card w-50 text-center top-50 start-50 translate-middle"
+			style="margin-top: 50px; background-color: silver;">
+			<div class="card-body">
+				<h5 class="card-title">Precisa entrar primeiro!</h5>
+				<button onclick="history.back()" class="btn btn-primary">voltar</button>
+			</div>
+		</div>
+
+		<%
 		}
 		%>
 
