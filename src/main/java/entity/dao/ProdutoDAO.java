@@ -72,30 +72,4 @@ public class ProdutoDAO {
 		
 		return produto;
 	}
-	
-	/**
-	 * Cadastra um produto no banco.
-	 * 
-	 * @param Produto produto.
-	 * @return Boolean.
-	 */
-	
-	public static boolean cadastrarProduto(Produto produto) {
-		var success = false;
-		var session = sessionFactory.openSession();
-		var transaction = session.beginTransaction();
-		
-		try {
-			session.save(produto);
-			transaction.commit();
-			success = true;
-		} catch (Exception e) {
-			e.printStackTrace();
-			transaction.rollback();
-		} finally {
-			session.close();
-		}
-		
-		return success;
-	}
 }

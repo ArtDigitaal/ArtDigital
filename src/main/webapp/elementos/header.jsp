@@ -2,11 +2,10 @@
 <%@page import="entity.Categoria"%>
 <%@page import="entity.dao.CategoriaDAO"%>
 <%@page import="entity.Usuario"%>
-<body style="background-image: url('./img/arte5.jpg');">
+<body>
 	<header
 		class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between p-3 mb-4 border-bottom"
-		style="background-color: #EEDD82; background-image: url('./img/barra2.jpg');">
-		
+		style="background-color: #c8d9ed">
 		<div class="container">
 			<div class="row">
 				<div class="col-sm">
@@ -36,8 +35,8 @@
 					</ul>
 				</div>
 				<div class="col-sm">
-					<a href="./anunciar.jsp" class="btn border border-dark"
-						style="background-color: #CD5C5C; border-radius: 15px; font-weight: bold;">
+					<a href="./anunciar.jsp" class="btn border border-2 border-dark"
+						style="background-color: #e9b4b4; border-radius: 15px">
 						Anunciar </a>
 				</div>
 				<div class="col-sm">
