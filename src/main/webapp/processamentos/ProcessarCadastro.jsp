@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<%@page import="entity.Carrinho"%>
 <%@page import="java.time.LocalDateTime"%>
 <%@page import="entity.Login"%>
 <%@page import="entity.dao.UsuarioDAO"%>
@@ -73,7 +74,8 @@
 			cidade,
 			null,
 			cpf,
-			cnpj
+			cnpj,
+			new Carrinho()
 	);
 	
 	if (!usuarioExiste) {

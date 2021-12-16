@@ -70,7 +70,6 @@ public class ProdutoServlet extends HttpServlet {
 		Usuario usuario = (Usuario) session.getAttribute("usuarioValidado");
 		
 		Produto produto = new Produto(descricao, nome, quantidade, preco, categoria, imagem, usuario);
-		System.out.println(produto);
 		
 		boolean success;
 		try {

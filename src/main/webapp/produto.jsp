@@ -16,6 +16,22 @@
 	<title>Informações do Produto | ArtDigital</title>
 </head>
 <body>
+	<script type="text/javascript">
+		function addCarrinho(id) {
+			console.log(id);
+			var form = document.createElement("form");
+		    form.setAttribute("method", "post");
+		    form.setAttribute("action", "processamentos/AdicionaCarrinho.jsp");
+		    
+		    var input = document.createElement("input");
+		    input.setAttribute("type", "text");
+		    input.setAttribute("name", "prodId");
+		    
+		    form.appendChild(input);
+		    form.submit();
+		}
+	</script>
+
     <%@include file='elementos/header.jsp' %>
 
 	<%
@@ -52,7 +68,8 @@
 				<button class="btn border border-2 border-dark m-4" 
 					style="background-color: #2bb5f0; width: 150px; border-radius: 20px">Comprar</button>
             	<button class="btn border border-2 border-dark m-4" 
-            		style="background-color: #e9b4b4; width: 200px; border-radius: 20px">Adicionar ao carrinho</button>
+            		style="background-color: #e9b4b4; width: 200px; border-radius: 20px" 
+            		onclick="addCarrinho(<%= produto.getId() %>)">Adicionar ao carrinho</button>
 			</div>
 		<% } else { %>
 			<div class="p-3" style="background-color: #c8d9ed; border-radius: 15px 15px 0px 0px">

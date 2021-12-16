@@ -1,5 +1,6 @@
 package entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,9 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
 
 @Entity
 @Table(name = "usuario")
@@ -29,9 +27,8 @@ public class Usuario {
 	@Column(name = "email", unique = true)
 	private String email;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_login")
-	@Cascade(CascadeType.ALL)
 	private Login login;
 
 	@Column(name = "cep")
@@ -58,11 +55,15 @@ public class Usuario {
 	@Column(name = "cnpj", unique = true)
 	private String cnpj;
 	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "cod_carr")
+	private Carrinho carrinho;
+	
 	public Usuario() {
 	}
 
 	public Usuario(String nome, String telefone, String email, Login login, String cep, String bairro,
-			String rua, int numero, String cidade, String uf, String cpf, String cnpj) {
+			String rua, int numero, String cidade, String uf, String cpf, String cnpj, Carrinho carrinho) {
 		super();
 		this.nome = nome;
 		this.telefone = telefone;
@@ -76,6 +77,7 @@ public class Usuario {
 		this.uf = uf;
 		this.cpf = cpf;
 		this.cnpj = cnpj;
+		this.carrinho = carrinho;
 	}
 
 	public Long getId() {
@@ -182,11 +184,19 @@ public class Usuario {
 		this.cnpj = cnpj;
 	}
 
+	public Carrinho getCarrinho() {
+		return carrinho;
+	}
+
+	public void setCarrinho(Carrinho carrinho) {
+		this.carrinho = carrinho;
+	}
+
 	@Override
 	public String toString() {
 		return "Usuario [id=" + id + ", nome=" + nome + ", telefone=" + telefone + ", email=" + email + ", login="
 				+ login + ", cep=" + cep + ", bairro=" + bairro + ", rua=" + rua + ", numero=" + numero + ", cidade="
-				+ cidade + ", uf=" + uf + ", cpf=" + cpf + ", cnpj=" + cnpj + "]";
+				+ cidade + ", uf=" + uf + ", cpf=" + cpf + ", cnpj=" + cnpj + ", carrinho=" + carrinho + "]";
 	}
 	
 }
