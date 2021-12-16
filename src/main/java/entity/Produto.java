@@ -32,18 +32,11 @@ public class Produto {
 	@ManyToOne
 	@JoinColumn(name = "cod_categ", nullable = false)
 	private Categoria categoria;
-	@ManyToOne
-	@JoinColumn(name = "cod_usuario", nullable = false)
-	private Usuario usuario;
 	
 	public Produto() {
 	}
 	
-	public Produto(
-			String descricao, String nome, 
-			int quantidade, Double valorUnit, 
-			Categoria categoria, Imagem imagem,
-			Usuario usuario) {
+	public Produto(String descricao, String nome, int quantidade, Double valorUnit, Categoria categoria, Imagem imagem) {
 		super();
 		this.descricao = descricao;
 		this.nome = nome;
@@ -51,7 +44,6 @@ public class Produto {
 		this.valorUnit = valorUnit;
 		this.categoria = categoria;
 		this.imagem = imagem;
-		this.usuario = usuario;
 	}
 	
 	public Long getId() {
@@ -110,19 +102,10 @@ public class Produto {
 		
 	}
 
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-
 	@Override
 	public String toString() {
 		return "Produto [id=" + id + ", descricao=" + descricao + ", nome=" + nome + ", quantidade=" + quantidade
-				+ ", valorUnit=" + valorUnit + ", imagem=" + imagem + ", categoria=" + categoria + ", usuario="
-				+ usuario + "]";
+				+ ", valorUnit=" + valorUnit + ", categoria=" + categoria + ", imagem=" + imagem + "]";
 	}
 	
 }
