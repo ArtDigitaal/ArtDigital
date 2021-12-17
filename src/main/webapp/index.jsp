@@ -39,7 +39,7 @@
         <div class="row">
         <% for (Produto produto : produtos) { %>
         	<div class="col-12 col-md-6 col-lg-4" >
-				<div class="p-3 my-3" style="background-color: #c8d9ed; border-radius: 15px">
+				<div class="p-3 my-3" style="background-color: #C5E3FF; border-radius: 15px">
 					<img src="data:<%= produto.getImagem().getTipo() %>;base64,<%= Base64.getEncoder().encodeToString(produto.getImagem().getBytes()) %>"
 							style="object-fit: cover; border-radius: 15px;"
 							height=300px width=100%
@@ -47,12 +47,12 @@
 					<a href="./produto.jsp?id=<%= produto.getId() %>" style="color: black; text-decoration: none">
 						<div class="d-flex flex-row justify-content-between m-2">
 							<h5><%= produto.getNome() %></h5>
-							<h5>R$ <%= produto.getValorUnit() %></h5>
+							<h5>R$ <%= String.format("%.2f", produto.getValorUnit()) %></h5>
 						</div>
 					</a>
 					<div class="d-flex flex-row justify-content-center">
 						<button class="btn btn-primary mx-2">Comprar</button>
-						<button class="btn btn-outline-primary mx-2">Adicionar ao carrinho</button>
+						<button class="btn btn-primary mx-2">Adicionar ao carrinho</button>
 					</div>
 				</div>
 			</div>
@@ -61,9 +61,9 @@
       </div>
     </main>
 
-    <footer class="fixed-bottom footer mt-auto py-3 bg-light">
+    <footer class="fixed-bottom footer mt-auto py-3 bg-light" style="background-image: url('img/BARRA_BRANCA.jpg');">
       <div class="container">
-        <span class="text-muted">2021 ArtDigital</span>
+        <span class="text-center justify-content-center">2021 ArtDigital</span>
       </div>
     </footer>
 </body>

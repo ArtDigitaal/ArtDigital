@@ -25,8 +25,8 @@
 	<main>
 		<div class="container px-5 py-1">
 		<% if (produto != null) { %>
-			<div class="d-flex flex-lg-row flex-column justify-content-center p-3" style="background-color: #c8d9ed; border-radius: 15px 15px 0px 0px">
-				<div class="m-3" style="object-fit: cover; border-radius: 15px;">
+			<div class="d-flex flex-lg-row flex-column justify-content-center p-1" style="background-color: #C5E3FF; border-radius: 15px 15px 0px 0px">
+				<div class="m-3" style="object-fit: cover; border-radius: 15px; min-width: 30%">
 					<img src="data:<%= produto.getImagem().getTipo() %>;base64,<%= Base64.getEncoder().encodeToString(produto.getImagem().getBytes()) %>"
 						style="object-fit: cover; border-radius: 15px;"
 						height=400px width=100%
@@ -48,14 +48,14 @@
 					<div class="d-flex justify-content-end"><p><%= produto.getCategoria().getDescricao() %></p></div>
 				</div>
 			</div>
-			<div class="d-flex justify-content-md-end justify-content-center w-100" style="height: auto; background-color: #c2c2c2;">
-				<button class="btn border border-2 border-dark m-4" 
-					style="background-color: #2bb5f0; width: 150px; border-radius: 20px">Comprar</button>
-            	<button class="btn border border-2 border-dark m-4" 
-            		style="background-color: #e9b4b4; width: 200px; border-radius: 20px">Adicionar ao carrinho</button>
+			<div class="d-flex justify-content-md-end justify-content-center w-100 p-3" style="height: auto; background-color: #c2c2c2;">
+				<button class="btn btn-primary mx-2 border-0" 
+					style="background-color: #8dcaff; color: black">Comprar</button>
+            	<button class="btn btn-primary mx-2 border-0" 
+					style="background-color: #8dcaff; color: black">Adicionar ao carrinho</button>
 			</div>
 		<% } else { %>
-			<div class="p-3" style="background-color: #c8d9ed; border-radius: 15px 15px 0px 0px">
+			<div class="p-1" style="background-color: #c8d9ed; border-radius: 15px 15px 0px 0px">
 				<h3>Produto não encontrado</h3>
 				<p>Este produto deve ter sido removido pelo anunciante</p>
 			</div>

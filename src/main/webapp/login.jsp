@@ -21,7 +21,7 @@
     <main class="flex-shrink-0">
       <div class="container px-5 py-1">
       
-      	<div class="p-3 my-3 mx-auto" style="background-color: #c8d9ed; border-radius: 15px; max-width: 500px;">
+      	<div class="p-3 my-3 mx-auto" style="background-color: #C5E3FF; border-radius: 15px; max-width: 500px;">
 			<div class="text-center">
 	        	<p>Digite suas credenciais para entrar no sistema!</p>
 	        </div>

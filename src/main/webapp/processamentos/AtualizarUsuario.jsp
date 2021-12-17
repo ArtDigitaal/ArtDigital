@@ -26,17 +26,6 @@
 		numero = 0;
 	}
 	
-	/* Processando data de nascimento */
-	
-	String inputDate = (String) request.getParameter("inputDate");
-	String[] arrayDate = inputDate.split("-");
-	
-	LocalDate dataNasc = LocalDate.of(
-		Integer.parseInt(arrayDate[0]),
-		Integer.parseInt(arrayDate[1]),
-		Integer.parseInt(arrayDate[2])
-	);
-	
 	Object usuarioValidado = session.getAttribute("usuarioValidado");
 
 	if (usuarioValidado != null) {

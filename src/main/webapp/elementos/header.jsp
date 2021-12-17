@@ -2,10 +2,10 @@
 <%@page import="entity.Categoria"%>
 <%@page import="entity.dao.CategoriaDAO"%>
 <%@page import="entity.Usuario"%>
-<body>
+<body style="background-color: #F0F8FF">
 	<header
 		class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between p-3 mb-4 border-bottom"
-		style="background-color: #EEDD82;">
+		style="background-color: #EEDD82; background-image: url('img/BARRA3.jpg');">
 		
 		<div class="container">
 			<div class="row">
@@ -15,12 +15,13 @@
 						<img src="./img/logo.png" alt="Inicio" height="50">
 					</a>
 				</div>
-				<div class="col-sm">
+				<div class="col-sm btn-group">
 					<ul
 						class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-						<li><a class="nav-link px-2 link-dark dropdown-toggle"
+						<li><a class="btn btn-primary px-2 mx-2 border-0 dropdown-toggle"
+							style="background-color: #8dcaff; color: black"
 							href="#" id="navbarDropdown" role="button"
-							data-bs-toggle="dropdown" aria-expanded="false"> Categorias </a>
+							data-bs-toggle="dropdown" aria-expanded="false"><strong>Categorias</strong></a>
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 								<%
 								List<Categoria> categorias = CategoriaDAO.retornaCategorias();
@@ -32,13 +33,15 @@
 								}
 								%>
 							</ul></li>
-						<li><a href="./sobre.jsp" class="nav-link px-2 link-dark">Sobre</a></li>
+						<li><a 
+							href="./sobre.jsp" 
+							class="btn btn-primary px-2 mx-2 border-0" style="background-color: #8dcaff; color: black"><strong>Sobre</strong></a></li>
+						<li>
+						<a href="./anunciar.jsp" class="btn btn-primary px-2 mx-2 border-0"
+							style="background-color: #CD5C5C; font-weight: bold; color: black">
+							Anunciar </a>
+						</li>
 					</ul>
-				</div>
-				<div class="col-sm">
-					<a href="./anunciar.jsp" class="btn border border-dark"
-						style="background-color: #CD5C5C; border-radius: 15px; font-weight: bold;">
-						Anunciar </a>
 				</div>
 				<div class="col-sm">
 					<div class="col text-end">
@@ -52,16 +55,16 @@
 						<a href="./carrinho.jsp" class="my-2"> <img
 							src="./img/cart.png" alt="Carrinho" height="30">
 						</a> 
-						<a class="btn btn-outline-primary mx-2"
-							style="border-radius: 0px"
+						<a class="btn btn-primary mx-2 border-0"
+							style="background-color: #8dcaff; color: black"
 							href="./processamentos/RealizarLogout.jsp" role="button"
 							id="headerButtonLogin">Sair</a>
 						<%
 						} else {
 						%>
-						<a class="btn btn-outline-primary mx-2" style="border-radius: 0px"
+						<a class="btn btn-primary mx-2 border-0" style="background-color: #8dcaff; color: black"
 							href="./login.jsp" role="button" id="headerButtonLogin">Entrar</a>
-						<a class="btn btn-primary mx-2" style="border-radius: 0px"
+						<a class="btn btn-primary mx-2 border-0" style="background-color: #8dcaff; color: black"
 							href="./cadastro.jsp" role="button" id="headerButtonSignup">Cadastrar</a>
 						<%
 						}
