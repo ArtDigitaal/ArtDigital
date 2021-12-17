@@ -18,7 +18,6 @@
 <body>
 
 	<%@include file='elementos/header.jsp'%>
-
 	<script>
 		function onCalcular() {
 			var valor, custo, vlrHrs = 0;
@@ -31,8 +30,10 @@
 					var horasMinutos = parseInt(texto[0]) * 60;
 					valor = (horasMinutos + parseInt(texto[1])) / 60;
 				} else {
-					document.getElementById("alertModal").innerHTML = "As horas trabalhas não podem ser "+horasTrab.value+"!";
-					document.getElementById("alertModal").classList.remove("d-none");
+					document.getElementById("alertModal").innerHTML = "As horas trabalhas não podem ser "
+							+ horasTrab.value + "!";
+					document.getElementById("alertModal").classList
+							.remove("d-none");
 					return;
 				}
 
@@ -54,11 +55,13 @@
 
 				var result = (valor * vlrHrs) + custo;
 
-				document.getElementById("result").value = parseFloat(result).toFixed(2);
+				document.getElementById("result").value = parseFloat(result)
+						.toFixed(2);
 
 			} else {
 				document.getElementById("alertModal").innerHTML = "As horas trabalhas não podem ser vazio!";
-				document.getElementById("alertModal").classList.remove("d-none");
+				document.getElementById("alertModal").classList
+						.remove("d-none");
 			}
 
 		}
@@ -75,14 +78,22 @@
 				document.getElementById("preco").value = valor;
 			}
 		}
+
+		function submeterProduto() {
+			document.getElementById('formularioAnunciar').requestSubmit();
+		}
 	</script>
 
 	<div class="container px-5 py-1">
 
+		<%
+		if (session.getAttribute("usuarioValidado") != null) {
+			Usuario anunciarLogin = (Usuario) session.getAttribute("usuarioValidado");
+		%>
 		<div class="p-3 my-3 mx-auto"
 			style="background-color: #c8d9ed; border-radius: 15px; max-width: 1000px">
-			<form id="formularioCadastro"
-				action="./processamentos/ProcessarCadastro.jsp" method="post"
+			<form id="formularioAnunciar"
+				action="./processamentos/ProcessarAnunciar.jsp" method="post"
 				class="row g-3 justify-content-center mx-auto">
 
 				<div class="text-center">
@@ -92,13 +103,14 @@
 				<!-- Nome do produto -->
 				<div class="col-md-12">
 					<input type="text" style="background-color: #c2c2c2"
-						class="form-control" placeholder="Nome do produto">
+						class="form-control" placeholder="Nome do produto" id="nomeInput"
+						name="nomeInput">
 				</div>
 
 				<!-- Categorias do produto -->
 				<div class="col-md-2">
 					<select class="form-select" style="background-color: #c2c2c2"
-						id="inputGroupSelect01">
+						id="selectInput" name="selectInput">
 						<option selected disabled>Categorias</option>
 						<%
 						List<Categoria> categorias2 = CategoriaDAO.retornaCategorias();
@@ -114,22 +126,21 @@
 				<!-- Imagem do produto  -->
 				<div class="col-md-10">
 					<input type="file" style="background-color: #c2c2c2"
-						class="form-control" id="inputGroupFile01">
+						class="form-control" id="imagemInput" name="imagemInput">
 				</div>
 
 				<!-- Quantidade do produto -->
-
 				<div class="col-md-12">
 					<input placeholder="Quantidade no estoque"
 						style="background-color: #c2c2c2" type="text" class="form-control"
-						aria-describedby="addon-wrapping">
+						aria-describedby="addon-wrapping" id="quantidadeInput" name="quantidadeInput" type="number">
 				</div>
 
 				<!-- Preço do produto -->
 				<div class="col-md-6">
 					<input placeholder="Preço" type="text"
 						style="background-color: #c2c2c2" class="form-control"
-						aria-describedby="addon-wrapping" id="preco">
+						aria-describedby="addon-wrapping" id="preco" name="preco" type="number">
 				</div>
 
 				<div class="col-md-6">
@@ -178,8 +189,9 @@
 
 								</div>
 								<div class="mb-3">
-									<label for="result" class="col-form-label">Resultado R$:</label> <input
-										type="text" disabled class="form-control" id="result">
+									<label for="result" class="col-form-label">Resultado
+										R$:</label> <input type="text" disabled class="form-control"
+										id="result">
 								</div>
 							</div>
 							<div class="modal-footer">
@@ -188,7 +200,8 @@
 								<button type="button" class="btn btn-danger"
 									onclick="onCalcular();">Calcular</button>
 								<button type="button" class="btn btn-primary"
-									onclick="onAplicar();" data-bs-dismiss="modal">Aplicar valor</button>
+									onclick="onAplicar();" data-bs-dismiss="modal">Aplicar
+									valor</button>
 							</div>
 						</div>
 					</div>
@@ -245,17 +258,34 @@
 				<!-- Descrição do produto -->
 				<div class="col-md-12">
 					<textarea class="form-control" style="background-color: #c2c2c2"
-						aria-label="With textarea" placeholder="Descrição do produto"></textarea>
+						aria-label="With textarea" placeholder="Descrição do produto" id="descInput" name="descInput"></textarea>
 				</div>
-				
+
 				<div class="col-md-12">
-	            <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-	              <button type="submit" class="btn btn-primary">Anunciar</button>
-	            </div>
-	          </div>
-				
+					<div class="d-grid gap-2 d-md-flex justify-content-md-center">
+						<button type="button" class="btn btn-primary"
+							onclick="submeterProduto()">Anunciar</button>
+					</div>
+				</div>
+
 			</form>
 		</div>
+		<%
+		} else {
+		%>
+
+		<div class="card w-50 text-center top-50 start-50 translate-middle"
+			style="margin-top: 50px; background-color: silver;">
+			<div class="card-body">
+				<h5 class="card-title">Precisa entrar primeiro!</h5>
+				<button onclick="history.back()" class="btn btn-primary">voltar</button>
+			</div>
+		</div>
+
+		<%
+		}
+		%>
+
 	</div>
 
 	<%@include file='elementos/footer.html'%>
