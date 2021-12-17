@@ -1,5 +1,6 @@
 package entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,7 +26,7 @@ public class Produto {
 	private int quantidade;
 	@Column(name = "valor_unit")
 	private Double valorUnit;
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "cod_img", nullable = false)
 	private Imagem imagem;
 	@ManyToOne
