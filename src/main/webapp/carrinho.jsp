@@ -8,6 +8,5 @@
 		<title>Carrinho | ArtDigital</title>
 	</head>
 	<body>
-		<%@include file='elementos/header.jsp' %>
 	</body>
 </html>
