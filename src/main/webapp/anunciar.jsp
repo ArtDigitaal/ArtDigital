@@ -91,7 +91,7 @@
 			Usuario anunciarLogin = (Usuario) session.getAttribute("usuarioValidado");
 		%>
 		<div class="p-3 my-3 mx-auto"
-			style="background-color: #c8d9ed; border-radius: 15px; max-width: 1000px">
+			style="background-color: #C5E3FF; border-radius: 15px; max-width: 1000px">
 			<%
 			String error = request.getParameter("error");
 			if (error != null) {
@@ -155,7 +155,7 @@
 
 				<div class="col-md-6">
 					<button type="button" class="btn btn-success"
-						data-bs-toggle="modal" data-bs-target="#exampleModal">Calculo</button>
+						data-bs-toggle="modal" data-bs-target="#exampleModal">Calcular</button>
 				</div>
 
 				<div class="modal fade" id="exampleModal" tabindex="-1"
@@ -199,7 +199,7 @@
 
 								</div>
 								<div class="mb-3">
-									<label for="result" class="col-form-label">Resultado
+									<label for="result" class="col-form-label">Valor sugerido
 										R$:</label> <input type="text" disabled class="form-control"
 										id="result">
 								</div>
