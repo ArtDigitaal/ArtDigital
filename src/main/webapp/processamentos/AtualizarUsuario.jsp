@@ -47,7 +47,6 @@
 		usuario.setCep(cep);
 		usuario.setNumero(numero);
 		usuario.setCidade(cidade);
-		usuario.setDataNasc(dataNasc);
 		
 		if (UsuarioDAO.atualizarUsuario(usuario)) {
 			out.print(String.format("alert('Usuario %s atualizado com sucesso!')", usuario.getNome()));
